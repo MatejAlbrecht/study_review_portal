@@ -1,0 +1,51 @@
+.header {
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header__inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0.75rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+  font-size: 1.2rem;
+}
+
+.header__logo:hover {
+  color: inherit;
+}
+
+.header__logo-icon {
+  font-size: 1.4rem;
+}
+
+.header__nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.header__link {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: color 0.15s;
+}
+
+.header__link:hover {
+  color: var(--primary);
+}

@@ -1,0 +1,90 @@
+.course-card {
+  display: block;
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 1.25rem;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.course-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+  color: inherit;
+}
+
+.course-card__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.course-card__code {
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.course-card__credits {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.course-card__name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  line-height: 1.3;
+}
+
+.course-card__professor {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin: 0 0 0.15rem;
+}
+
+.course-card__department {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0 0 0.75rem;
+}
+
+.course-card__stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-color);
+  padding-top: 0.75rem;
+}
+
+.course-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.course-card__review-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.course-card__difficulty {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.85rem;
+}
+
+.course-card__difficulty-label {
+  color: var(--text-muted);
+}
+
+.course-card__difficulty-value {
+  font-weight: 600;
+}
