@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>StudyReview - College Class Reviews</title>
+    <script>
+      // Single-Page Application redirect for GitHub Pages.
+      // Stores the full URL in sessionStorage, then redirects to the root so
+      // the SPA can boot and restore the correct route via the script in index.html.
+      // Technique from https://github.com/rafgraph/spa-github-pages
+      var l = window.location;
+      sessionStorage.redirect = l.href;
+      // Keep the first 2 path segments ('' and the repository name, e.g. '/study_review_portal')
+      l.replace(
+        l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+        l.pathname.split('/').slice(0, 2).join('/') + '/?p=1'
+      );
+    </script>
+  </head>
+  <body></body>
+</html>
