@@ -4,8 +4,8 @@ import { PrismaLibSql } from '@prisma/adapter-libsql'
 
 const dbPath = './dev.db'
 const libsql = createClient({ url: `file:${dbPath}` })
-const adapter = new PrismaLibSql(libsql)
-const prisma = new PrismaClient({ adapter })
+const adapter = new PrismaLibSql(libsql as any)
+const prisma = new PrismaClient({ adapter } as any)
 
 async function main() {
   const user = await prisma.user.upsert({

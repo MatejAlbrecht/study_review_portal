@@ -10,9 +10,9 @@ function createPrismaClient() {
   const libsql = createClient({
     url: process.env.DATABASE_URL || 'file:./dev.db',
   })
-  
-  const adapter = new PrismaLibSql(libsql)
-  return new PrismaClient({ adapter })
+
+  const adapter = new PrismaLibSql(libsql as any)
+  return new PrismaClient({ adapter } as any)
 }
 
 export const prisma = globalForPrisma.prisma ?? createPrismaClient()
