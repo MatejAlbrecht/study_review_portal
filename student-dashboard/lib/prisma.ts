@@ -1,0 +1,20 @@
+import { PrismaClient } from '@prisma/client'
+import { createClient } from '@libsql/client'
+import { PrismaLibSql } from '@prisma/adapter-libsql'
+
+const globalForPrisma = globalThis as unknown as {
+  prisma: PrismaClient | undefined
+}
+
+function createPrismaClient() {
+  const libsql = createClient({
+    url: process.env.DATABASE_URL || 'file:./dev.db',
+  })
+
+  const adapter = new PrismaLibSql(libsql as any)
+  return new PrismaClient({ adapter } as any)
+}
+
+export const prisma = globalForPrisma.prisma ?? createPrismaClient()
+
+if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
