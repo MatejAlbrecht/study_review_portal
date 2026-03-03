@@ -1,36 +1,157 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Student Dashboard
+
+A comprehensive, full-stack productivity web application designed specifically for students to manage their time, tasks, and study sessions.
+
+## Features
+
+### 📝 Advanced To-Do List
+- Complete CRUD functionality for tasks
+- Filter by status (Todo, In Progress, Done) and category (Homework, Exam, Personal)
+- Sort by due date
+- Priority levels (Low, Medium, High)
+- Mark tasks complete with one click
+
+### ⏱️ Pomodoro Timer
+- 25-minute focus sessions
+- 5-minute break intervals
+- Automatic session logging to database
+- Play/pause/reset controls
+
+### 📓 Quick Notes/Scratchpad
+- Multiple notes support
+- Markdown content
+- Automatic debounced saving (saves 1 second after you stop typing)
+- Quick note switching
+
+### 📊 Dashboard Overview
+- Real-time statistics
+- Today's task count
+- Total study time logged today
+- Total notes count
+
+### 🎨 UI/UX
+- Clean, minimalist design
+- Dark mode with toggle (persists across sessions)
+- Fully responsive (mobile-friendly)
+- Real-time updates without page refreshes
+
+## Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS v4
+- **Database**: SQLite with Prisma 7
+- **Backend**: Next.js Server Actions
+- **Icons**: Lucide React
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 20+ and npm
+
+### Installation
+
+1. Navigate to the project directory:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd student-dashboard
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Set up the database:
+```bash
+# Generate Prisma client
+npx prisma generate
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+# Run migrations
+npx prisma migrate dev
 
-## Learn More
+# Seed the database with a demo user
+sqlite3 dev.db "INSERT OR REPLACE INTO User (id, email, name, createdAt, updatedAt) VALUES ('demo-user-1', 'student@example.com', 'Demo Student', datetime('now'), datetime('now'));"
+```
 
-To learn more about Next.js, take a look at the following resources:
+4. Start the development server:
+```bash
+npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Building for Production
 
-## Deploy on Vercel
+```bash
+npm run build
+npm start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Database Schema
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### User
+- id, email, name, timestamps
+
+### Task
+- id, title, description
+- status (TODO, IN_PROGRESS, DONE)
+- priority (LOW, MEDIUM, HIGH)
+- category (HOMEWORK, EXAM, PERSONAL)
+- dueDate, userId, timestamps
+
+### StudySession
+- id, duration (minutes), date, notes
+- userId, timestamps
+
+### Note
+- id, title, content (markdown)
+- userId, timestamps
+
+## Project Structure
+
+```
+student-dashboard/
+├── actions/          # Server Actions for backend operations
+│   ├── tasks.ts      # Task CRUD operations
+│   ├── sessions.ts   # Study session logging
+│   └── notes.ts      # Notes CRUD operations
+├── app/              # Next.js App Router pages
+│   ├── layout.tsx    # Root layout
+│   ├── page.tsx      # Dashboard page
+│   └── globals.css   # Global styles
+├── components/       # React components
+│   ├── Header.tsx    # Header with dark mode toggle
+│   ├── TaskSection.tsx
+│   ├── PomodoroTimer.tsx
+│   └── NotesSection.tsx
+├── lib/              # Utilities
+│   ├── prisma.ts     # Prisma client singleton
+│   └── utils.ts      # Helper functions
+└── prisma/           # Database
+    ├── schema.prisma # Database schema
+    └── migrations/   # Migration files
+```
+
+## Features in Detail
+
+### Server Actions
+All backend operations use Next.js Server Actions for a seamless experience:
+- No API routes needed
+- Type-safe operations
+- Automatic revalidation
+- Progressive enhancement
+
+### Dark Mode
+- Automatically detects system preference on first visit
+- Toggle persists in localStorage
+- Smooth transitions
+
+### Responsive Design
+- Mobile-first approach
+- Adapts to all screen sizes
+- Touch-friendly controls
+
+## License
+
+MIT
