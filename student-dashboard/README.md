@@ -62,7 +62,16 @@ cd student-dashboard
 npm install
 ```
 
-3. Set up the database:
+3. Set up environment variables:
+```bash
+# Copy the example environment file
+cp .env.example .env
+
+# The .env file should contain:
+# DATABASE_URL="file:./dev.db"
+```
+
+4. Set up the database:
 ```bash
 # Generate Prisma client
 npx prisma generate
